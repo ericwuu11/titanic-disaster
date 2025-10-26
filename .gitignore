@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# IDE / Editor
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# R
+.Rhistory
+.Rproj.user/
+
+# Node
+node_modules/
+
+# Project-specific
+src/data/
