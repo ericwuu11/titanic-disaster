@@ -1,5 +1,5 @@
-# titanic-disaster
-Developing a model that predicts the survival of each passenger, but also instruct a user how to run through the repo that will load the data, adjust the dataset in any way, and make a prediction
+# Welcome to the Titanic Disaster Repository 
+This repository focuses on developing a model that predicts the survival of each passenger, but also instruct a user how to run through the repo that will load the data, adjust the dataset in any way, and make a prediction.
 
 # Things you will need:
 1. Docker Desktop - Make sure Docker Desktop is installed and running on your machine. This project uses Docker to provide fully reproducible environments for both R and Python models.
@@ -10,4 +10,43 @@ Developing a model that predicts the survival of each passenger, but also instru
 
 4. Titanic dataset (https://www.kaggle.com/competitions/titanic/code). The required files: ('train.csv', 'test.csv', 'gender_submission.csv'). Place these files into the src/data/ folder after cloning the repo.
 
-# Step 1: Clone the 
+# Step 1: Clone the repository and move into the Project Directory
+
+#### Clone the repository
+git clone https://github.com/ericwuu11/titanic-disaster.git
+
+#### Move into the Project Directory
+cd titanic-disaster
+
+
+# Step 2: Run Python Model
+Inside the src/app folder, there are two Python files: 1. main.py and 2. model.py. The only one that needs to be examined is model.py (ignore main.py).
+
+#### Build the Python Docker Image:
+docker build -t pymodel .
+
+#### Run it on the Python Model
+docker run --rm pymodel
+
+Expected Output:
+[INFO] train shape: (891, 12), test shape: (418, 11), submission shape: (418, 2)
+[FE] Created feature FamilySize
+[FE] Created feature IsMale
+[FEATURES] Using features: ['Pclass', 'Fare', 'Age', 'FamilySize', 'IsMale']
+[TRAIN] Fitting logistic regression model...
+[METRIC] TRAIN accuracy: 0.8036
+[PREDICT] Predicting on test set...
+[OUTPUT] First 20 predictions: [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0]
+[METRIC] TEST accuracy (using gender_submission as true labels): 0.9426
+
+# Step 3: Run R Model
+Note that there should be an rmodel folder inside src, and it contains three things ('Dockerfile' used for rmodel (different from the one in the root that is used for the Python model), 'install_packages.R' consists of libraries and packages that are needed to run the Dockerfile, and 'model.R' that contains the model that predicts survival.
+
+#### Build the R Docker Image:
+docker build -f src/r_model/Dockerfile -t rmodel .
+
+#### Run it on the R Model
+docker run --rm rmodel
+
+
+
