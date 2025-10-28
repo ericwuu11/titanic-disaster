@@ -26,8 +26,7 @@ Inside the src/app folder, there is a model.py file, which contains the Python m
 docker build -t pymodel .
 
 #### Run it on the Python Model
-docker run --rm pymodel
-
+docker run --rm -v "${PWD}:/app" pymodel    
 
 # Step 3: Run R Model
 Note that there should be an rmodel folder inside src, and it contains three things ('Dockerfile' used for rmodel (different from the one in the root that is used for the Python model), 'install_packages.R' consists of libraries and packages that are needed to run the Dockerfile, and 'model.R' that contains the model that predicts survival.
@@ -38,7 +37,10 @@ docker build -f src/r_model/Dockerfile -t rmodel .
 Note: Inside the Dockerfile for rmodel there is a line that says "FROM --platform=linux/arm64 rocker/r-base:4.5.1", make sure it matches your system (Use ARM64 on Apple Silicon; switch to linux/amd64 if you're on Intel)
 
 #### Run it on the R Model
-docker run --rm rmodel
+docker run --rm -v "${PWD}:/app" rmodel 
+
+#### Step 4: Review Findings
+In each respective folder for the models, you should see a csv file ('python_predictions.csv' and 'r_predictions.csv') that records each of predictions for each model.
 
 
 
