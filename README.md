@@ -32,8 +32,10 @@ docker run --rm pymodel
 # Step 3: Run R Model
 Note that there should be an rmodel folder inside src, and it contains three things ('Dockerfile' used for rmodel (different from the one in the root that is used for the Python model), 'install_packages.R' consists of libraries and packages that are needed to run the Dockerfile, and 'model.R' that contains the model that predicts survival.
 
-#### Build the R Docker Image:
+#### Build the R Docker Image (HEADS UP - This can take anywhere from 2000-2500 seconds to complete running): 
 docker build -f src/r_model/Dockerfile -t rmodel .
+
+Note: Inside the Dockerfile for rmodel there is a line that says "FROM --platform=linux/arm64 rocker/r-base:4.5.1", make sure it matches your system (Use ARM64 on Apple Silicon; switch to linux/amd64 if you're on Intel)
 
 #### Run it on the R Model
 docker run --rm rmodel
