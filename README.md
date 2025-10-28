@@ -28,16 +28,6 @@ docker build -t pymodel .
 #### Run it on the Python Model
 docker run --rm pymodel
 
-Expected Output:
-[INFO] train shape: (891, 12), test shape: (418, 11), submission shape: (418, 2)
-[FE] Created feature FamilySize
-[FE] Created feature IsMale
-[FEATURES] Using features: ['Pclass', 'Fare', 'Age', 'FamilySize', 'IsMale']
-[TRAIN] Fitting logistic regression model...
-[METRIC] TRAIN accuracy: 0.8036
-[PREDICT] Predicting on test set...
-[OUTPUT] First 20 predictions: [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0]
-[METRIC] TEST accuracy (using gender_submission as true labels): 0.9426
 
 # Step 3: Run R Model
 Note that there should be an rmodel folder inside src, and it contains three things ('Dockerfile' used for rmodel (different from the one in the root that is used for the Python model), 'install_packages.R' consists of libraries and packages that are needed to run the Dockerfile, and 'model.R' that contains the model that predicts survival.
