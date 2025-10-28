@@ -20,7 +20,7 @@ cd titanic-disaster
 
 
 # Step 2: Run Python Model
-Inside the src/app folder, there are two Python files: 1. main.py and 2. model.py. The only one that needs to be examined is model.py (ignore main.py).
+Inside the src/app folder, there is a model.py file, which contains the Python model for the Titanic Disaster.
 
 #### Build the Python Docker Image:
 docker build -t pymodel .
