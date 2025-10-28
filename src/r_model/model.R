@@ -97,6 +97,19 @@ main <- function() {
   } else {
     cat("[WARN] No overlapping PassengerId rows between test predictions and gender_submission.\n")
   }
+
+  # Ensure folder exists
+  if (!dir.exists("src/r_model")) {
+    dir.create("src/r_model", recursive = TRUE)
+  }
+
+  output_path <- file.path("src/r_model", "r_predictions.csv")
+  merged %>%
+    select(PassengerId, Predicted) %>%
+    readr::write_csv(output_path)
+
+  cat(sprintf("[SAVE] Predictions saved to: %s\n", normalizePath(output_path)))
+  
 }
 
 if (sys.nframe() == 0) {
