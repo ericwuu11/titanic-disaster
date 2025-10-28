@@ -39,8 +39,5 @@ Note: Inside the Dockerfile for rmodel there is a line that says "FROM --platfor
 #### Run it on the R Model
 docker run --rm -v "${PWD}:/app" rmodel 
 
-#### Step 4: Review Findings
+# Step 4: Review Findings
 In each respective folder for the models, you should see a csv file ('python_predictions.csv' and 'r_predictions.csv') that records each of predictions for each model.
-
-
-
