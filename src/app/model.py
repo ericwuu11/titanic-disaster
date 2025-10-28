@@ -76,5 +76,10 @@ def main():
     test_acc = accuracy_score(merged["Survived"], merged["Predicted"])
     print(f"[METRIC] TEST accuracy (using gender_submission as true labels): {test_acc:.4f}")
 
+    # Save Predictions to a csv file
+    output_path = "src/app/python_predictions.csv"
+    merged[["PassengerId", "Predicted"]].to_csv(output_path, index=False)
+    print(f"[SAVE] Predictions saved to: {output_path}")
+
 if __name__ == "__main__":
     main()
